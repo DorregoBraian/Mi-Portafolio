@@ -40,7 +40,8 @@
                   "maximumError": "18kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/Mi-Portafolio/"
             },
             "development": {
               "optimization": false,
