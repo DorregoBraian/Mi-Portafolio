@@ -4,6 +4,7 @@ import type { CircuitTick, ProjectConnection, ProjectItem } from '../../Interfac
 const STAGE_SIZE = 860;
 const STAGE_CENTER = STAGE_SIZE / 2;
 const NODE_RADIUS = 310;
+const BASE_HREF = '/Mi-Portafolio';
 
 @Component({
   imports: [],
@@ -12,6 +13,10 @@ const NODE_RADIUS = 310;
   templateUrl: './section-projects.html',
 })
 export class SectionProjects {
+  private withBase(path: string): string {
+    return `${BASE_HREF}${path}`;
+  }
+
   readonly projects: ProjectItem[] = [
     {
       id: 'extension-vs-file-architect',
@@ -95,7 +100,7 @@ export class SectionProjects {
       repoUrl: 'https://github.com/DorregoBraian?tab=repositories',
       repoLabel: 'Ver repositorios',
     },
-  ];
+  ].map(project => ({ ...project, image: this.withBase(project.image) })) as ProjectItem[];
 
   readonly selectedId = signal<string | null>(null);
   readonly selectedProject = computed(
