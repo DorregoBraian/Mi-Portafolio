@@ -1,0 +1,589 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #060608;
+  color: #f5f5f7;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Barra principal                                                    */
+/* ------------------------------------------------------------------ */
+
+.gamer-navbar {
+  position: relative;
+  z-index: 1000;
+  min-height: 96px;
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  isolation: isolate;
+  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Fondo oscuro con las esquinas cortadas */
+.gamer-navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, transparent 22%),
+    linear-gradient(180deg, #0e0e12 0%, #0b0b0e 55%, #08080b 100%);
+  clip-path: polygon(
+    28px 0,
+    calc(100% - 28px) 0,
+    100% 28px,
+    100% calc(100% - 28px),
+    calc(100% - 28px) 100%,
+    28px 100%,
+    0 calc(100% - 28px),
+    0 28px
+  );
+}
+
+/* Línea inferior de la barra */
+.gamer-navbar::after {
+  content: '';
+  position: absolute;
+  inset-inline: 58px;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #ff2a38 0%,
+    rgba(255, 42, 56, 0.35) 8%,
+    rgba(255, 42, 56, 0.16) 50%,
+    rgba(255, 42, 56, 0.35) 92%,
+    #ff2a38 100%
+  );
+  box-shadow: 0 0 8px rgba(255, 30, 45, 0.35);
+}
+
+/* Laterales rojos en forma de < > */
+
+.edge {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 58px;
+  height: 96px;
+  pointer-events: none;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(165, 0, 20, 0.62) 0%,
+    rgba(95, 0, 13, 0.36) 58%,
+    rgba(25, 0, 4, 0.06) 100%
+  );
+}
+
+.edge--left {
+  left: 0;
+}
+
+.edge--right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.edge::before,
+.edge::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(255, 20, 40, 0.4));
+}
+
+/* Brazo superior de la < */
+.edge::before {
+  clip-path: polygon(0 50%, 100% 0, 100% 15%, 0 65%);
+  background: linear-gradient(90deg, #ff7b83 0%, #ff2635 20%, #c40015 68%, #5a0009 100%);
+}
+
+/* Brazo inferior de la < */
+.edge::after {
+  clip-path: polygon(0 35%, 100% 85%, 100% 100%, 0 50%);
+  background: linear-gradient(90deg, #ff7b83 0%, #ff2635 20%, #c40015 68%, #5a0009 100%);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Contenido de la barra                                              */
+/* ------------------------------------------------------------------ */
+
+.navbar-frame {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 96px;
+  max-width: 1084px;
+  margin-inline: auto;
+  padding-left: clamp(24px, 6.5vw, 74px);
+  padding-right: clamp(24px, 4vw, 48px);
+  gap: clamp(20px, 2.4vw, 34px);
+}
+
+/* Logo */
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 12px;
+  margin: 0 clamp(6px, 1vw, 16px) 0 0;
+  padding: 0;
+  color: #fff;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.brand-symbol {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding-right: 0.05em;
+  font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif;
+  font-size: 3.25rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  background: linear-gradient(160deg, #ff5a61 0%, #f21325 34%, #c10012 64%, #7d000a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 22, 40, 0.42));
+  transform: skewX(-8deg);
+  user-select: none;
+}
+
+.brand-symbol::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 12%;
+  width: 3px;
+  height: 68%;
+  background: linear-gradient(180deg, #ff3d4a, #8d000d);
+  box-shadow: 0 0 10px rgba(255, 30, 45, 0.8);
+  transform: skewX(-14deg);
+}
+
+.brand-symbol::after {
+  content: '';
+  position: absolute;
+  left: -8%;
+  top: 46%;
+  width: 118%;
+  height: 7%;
+  background: #0b0b0e;
+  transform: rotate(-16deg);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.13em;
+}
+
+.brand-text span {
+  color: #f2f2f5;
+}
+
+.brand-text strong {
+  margin-top: 4px;
+  color: #ed1226;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.44em;
+  text-shadow: 0 0 12px rgba(255, 20, 40, 0.55);
+}
+
+/* Navegación */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  margin: 0 auto;
+  padding: 0;
+  gap: clamp(18px, 1.9vw, 26px);
+}
+
+.gamer-navbar .nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 100%;
+  padding: 0;
+  color: #9d9da5;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.gamer-navbar .nav-link i {
+  font-size: 1.18rem;
+  line-height: 1;
+  color: inherit;
+  transition:
+    color 0.2s ease,
+    filter 0.2s ease;
+}
+
+.gamer-navbar .nav-link:hover {
+  color: #ff1f2f;
+  text-shadow: 0 0 18px rgba(255, 25, 45, 0.4);
+}
+
+.gamer-navbar .nav-link:hover i {
+  color: #ff1f2f;
+  filter: drop-shadow(0 0 8px rgba(255, 25, 45, 0.55));
+}
+
+.gamer-navbar .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* El ítem activo no conserva el rojo: el rojo aparece solo al pasar el cursor */
+
+/* Línea roja debajo del enlace activo */
+.gamer-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 3px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 30, 45, 0) 0%,
+    #ff2032 12%,
+    #ff2032 88%,
+    rgba(255, 30, 45, 0) 100%
+  );
+  box-shadow: 0 0 12px 1px rgba(255, 25, 45, 0.65);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+/* Botón de contacto */
+
+.contact-link {
+  --cut: 15px;
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: clamp(30px, 4vw, 54px);
+  margin-right: 14px;
+  padding: 1px;
+  background: linear-gradient(135deg, #ff3a47 0%, #c40818 48%, #ff2a39 100%);
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  text-decoration: none;
+  transition: filter 0.25s ease;
+}
+
+.contact-link__inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding-inline: 24px;
+  background: #0a0a0d;
+  color: #ff2a38;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.contact-link__inner i {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.contact-link:hover {
+  filter: drop-shadow(0 0 14px rgba(255, 25, 45, 0.55));
+}
+
+.contact-link:hover .contact-link__inner {
+  background: #180509;
+  color: #ff5b66;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Contenido de las páginas                                           */
+/* ------------------------------------------------------------------ */
+
+.page-content {
+  min-height: calc(100vh - 112px);
+  background: #060608;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Menú responsive                                                    */
+/* ------------------------------------------------------------------ */
+
+.gamer-navbar .navbar-toggler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  color: #ff3449;
+  background: transparent;
+  border: 1px solid #5c2029;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.gamer-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(229, 34, 53, 0.15);
+}
+
+.gamer-navbar .navbar-toggler .bi {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.gamer-navbar .navbar-toggler .bi-x-lg {
+  display: none;
+}
+
+.gamer-navbar .navbar-toggler:not(.collapsed) .bi-x-lg {
+  display: inline;
+}
+
+.gamer-navbar .navbar-toggler:not(.collapsed) .bi-list {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .gamer-navbar .navbar-toggler {
+    display: none;
+  }
+
+  .navbar-links > .nav-item {
+    display: flex;
+    height: 96px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Adaptación a pantallas pequeñas                                    */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 1199.98px) {
+  .navbar-frame {
+    /* Mantiene el logo despejado del lateral rojo en todo el rango desktop */
+    padding-left: max(4%, calc(85px - max(0px, (100vw - 1084px) / 2)));
+    padding-right: max(4%, calc(74px - max(0px, (100vw - 1084px) / 2)));
+  }
+
+  .navbar-links {
+    gap: 14px;
+  }
+
+  .gamer-navbar .nav-link {
+    gap: 7px;
+    font-size: 0.9rem;
+  }
+
+  .contact-link__inner {
+    padding-inline: 22px;
+  }
+}
+
+/* En laptops angostos el menú se compacta para no invadir los laterales rojos */
+@media (min-width: 992px) and (max-width: 1100px) {
+  .navbar-frame {
+    padding-left: 78px;
+    padding-right: 68px;
+    gap: 10px;
+  }
+
+  .navbar-links {
+    gap: 9px;
+  }
+
+  .brand-logo {
+    margin-right: 0;
+  }
+
+  .gamer-navbar .nav-link {
+    gap: 5px;
+    font-size: 0.82rem;
+  }
+
+  .contact-link {
+    margin-left: 12px;
+    margin-right: 6px;
+  }
+
+  .contact-link__inner {
+    gap: 8px;
+    padding-inline: 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .gamer-navbar {
+    min-height: 82px;
+    margin-top: 0;
+  }
+
+  .gamer-navbar::before {
+    clip-path: none;
+  }
+
+  .gamer-navbar::after,
+  .edge {
+    display: none;
+  }
+
+  .navbar-frame {
+    min-height: 82px;
+    padding: 12px 24px;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    height: auto;
+    margin: 0;
+    padding-top: 12px;
+  }
+
+  .gamer-navbar .nav-link {
+    justify-content: flex-start;
+    min-height: 46px;
+    height: auto;
+    padding: 10px 12px;
+  }
+
+  .gamer-navbar .nav-link::after {
+    display: none;
+  }
+
+  .contact-link {
+    margin: 12px 0 8px;
+  }
+
+  .contact-link__inner {
+    height: 44px;
+  }
+
+  .page-content {
+    min-height: calc(100vh - 82px);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-frame {
+    padding-inline: 18px;
+  }
+
+  .brand-symbol {
+    font-size: 2.5rem;
+  }
+
+  .brand-text {
+    font-size: 1.15rem;
+  }
+
+  .brand-text strong {
+    font-size: 0.6rem;
+  }
+
+  .contact-link__inner {
+    height: 42px;
+    padding-inline: 16px;
+    gap: 8px;
+    font-size: 0.88rem;
+  }
+}
+
+/* En desktop, logo, navegación y contacto quedan como tres bloques
+   separados y distribuidos a lo ancho de la barra. */
+@media (min-width: 992px) {
+  .gamer-navbar .navbar-collapse {
+    display: contents !important;
+  }
+
+  .navbar-frame {
+    justify-content: space-between;
+  }
+
+  .navbar-links {
+    margin: 0;
+  }
+
+  .brand-logo {
+    margin-right: 0;
+  }
+
+  .contact-link {
+    margin-left: 0;
+  }
+}
+
+/* En monitores grandes la barra puede respirar más sin invadir los laterales. */
+@media (min-width: 1200px) {
+  .navbar-frame {
+    max-width: max(1084px, calc(100vw - 140px));
+  }
+}
+
+/* Transición suave entre la barra compacta y la de escritorio. */
+@media (min-width: 1200px) and (max-width: 1299px) {
+  .navbar-links {
+    gap: 14px;
+  }
+
+  .gamer-navbar .nav-link {
+    gap: 7px;
+    font-size: 0.9rem;
+  }
+
+  .contact-link__inner {
+    padding-inline: 22px;
+  }
+}

@@ -1,0 +1,177 @@
+<section class="projects-page" aria-labelledby="projects-title">
+  <header class="projects-header">
+    <p class="projects-eyebrow">Portafolio</p>
+    <h2 id="projects-title" class="projects-title">Pro<span>yectos</span></h2>
+    <p class="projects-lead">
+      Una selección de proyectos donde combiné producto, backend y frontend. Elegí un nodo para ver
+      el detalle y abrir la demo o el repositorio.
+    </p>
+  </header>
+
+  <div class="roulette" role="group" aria-label="Seleccionar proyecto">
+    <svg class="roulette-lines" viewBox="0 0 860 860" aria-hidden="true" focusable="false">
+      <circle class="circuit-ring circuit-ring--outer" cx="430" cy="430" r="370"></circle>
+      <circle class="circuit-ring circuit-ring--nodes" cx="430" cy="430" r="340"></circle>
+
+      <polygon class="circuit-hex circuit-hex--inner" [attr.points]="innerHexagon"></polygon>
+
+      @for (connection of connections; track connection.from) {
+        <path
+          class="circuit-link-glow"
+          [class.is-active]="isConnectionActive(connection)"
+          [attr.d]="connection.path"
+        ></path>
+        <path
+          class="circuit-link"
+          [class.is-active]="isConnectionActive(connection)"
+          [attr.d]="connection.path"
+        ></path>
+        <circle class="circuit-pulse" [class.is-active]="isConnectionActive(connection)" r="3">
+          <animateMotion
+            [attr.path]="connection.path"
+            [attr.dur]="isConnectionActive(connection) ? '2.8s' : '7s'"
+            repeatCount="indefinite"
+          ></animateMotion>
+        </circle>
+        <path
+          class="circuit-junction"
+          [class.is-active]="isConnectionActive(connection)"
+          [attr.d]="
+            'M ' + connection.junctionX + ' ' + connection.junctionY + ' l 6 6 l -6 6 l -6 -6 z'
+          "
+        ></path>
+      }
+
+      @for (tick of ticks; track $index) {
+        <line
+          class="circuit-tick"
+          [class.circuit-tick--major]="tick.major"
+          [attr.x1]="tick.x1"
+          [attr.y1]="tick.y1"
+          [attr.x2]="tick.x2"
+          [attr.y2]="tick.y2"
+        ></line>
+      }
+    </svg>
+
+    <div
+      class="roulette-center"
+      [class]="
+        'roulette-center roulette-center--' +
+        (selectedProject()?.accent || 'red') +
+        (selectedProject() ? ' roulette-center--active' : '')
+      "
+      aria-live="polite"
+    >
+      @if (selectedProject(); as project) {
+        <span
+          class="roulette-center__media"
+          [style.background-image]="'url(' + project.image + ')'"
+          aria-hidden="true"
+        >
+        </span>
+
+        <button
+          class="roulette-center__reset"
+          type="button"
+          (click)="clearSelection()"
+          aria-label="Volver al inicio de proyectos"
+        >
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+
+        <div class="roulette-center__body">
+          <span class="roulette-center__eyebrow">
+            {{ project.category }} · {{ project.year }}
+          </span>
+          <strong>{{ project.title }}</strong>
+          <small class="roulette-center__tech">
+            {{ project.technologies.join(' · ') }}
+          </small>
+          <p class="roulette-center__summary">{{ project.summary }}</p>
+
+          <div class="roulette-center__actions">
+            @if (project.demoUrl) {
+              <a
+                class="project-action project-action--page"
+                [href]="project.demoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver página
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            }
+
+            @if (project.repoUrl) {
+              <a
+                class="project-action project-action--repo"
+                [href]="project.repoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ project.repoLabel || 'Ver repositorio' }}
+                <i class="bi bi-github" aria-hidden="true"></i>
+              </a>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="roulette-center__idle">
+          <span class="roulette-center__idle-icon" aria-hidden="true">
+            <i class="bi bi-diagram-3"></i>
+          </span>
+          <span class="roulette-center__eyebrow">// Núcleo de proyectos</span>
+          <strong>Proyectos</strong>
+          <span class="roulette-center__count">{{ projectCountLabel }} destacados</span>
+          <small>Hacé click en un nodo para ver el detalle.</small>
+        </div>
+      }
+    </div>
+
+    <div class="roulette-nodes">
+      @for (project of projects; track project.id; let i = $index) {
+        <button
+          class="project-node"
+          [class]="
+            'project-node project-node--' +
+            project.accent +
+            (isSelected(project.id) ? ' is-active' : '')
+          "
+          [style.--angle]="-90 + (i * 360) / projects.length + 'deg'"
+          type="button"
+          [attr.aria-pressed]="isSelected(project.id)"
+          [attr.aria-label]="
+            project.title + ' — ' + project.technologies.join(', ') + '. Seleccionar proyecto.'
+          "
+          (click)="selectProject(project)"
+        >
+          <span
+            class="project-node__media"
+            [style.background-image]="'url(' + project.image + ')'"
+            aria-hidden="true"
+          >
+          </span>
+          <span class="project-node__index" aria-hidden="true">0{{ i + 1 }}</span>
+          <span class="project-node__body">
+            <strong>{{ project.title }}</strong>
+            <small>{{ project.technologies.slice(0, 2).join(' · ') }}</small>
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <p class="projects-hint">
+    <i class="bi bi-crosshair" aria-hidden="true"></i>
+    Seleccioná un proyecto para abrir la demo o el repositorio.
+    <a
+      href="https://github.com/DorregoBraian?tab=repositories"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Ver todos los repositorios
+      <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+    </a>
+  </p>
+</section>

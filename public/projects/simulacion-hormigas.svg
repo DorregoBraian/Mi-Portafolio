@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".22"/>
+      <stop offset="58%" stop-color="#22d3ee" stop-opacity=".04"/>
+      <stop offset="100%" stop-color="#0b0b10" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#ffffff" stroke-opacity=".032" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="600" fill="#0b0b10"/>
+  <rect width="600" height="600" fill="url(#grid)"/>
+  <rect width="600" height="600" fill="url(#g)"/>
+  <g fill="none" stroke="#22d3ee" stroke-linecap="round">
+    <path d="M92 344C136 286 178 310 214 258s82-34 114 10 72 42 104-8 58-42 76-26" stroke-opacity=".22" stroke-width="2"/>
+    <path d="M96 372c48-32 76-4 112-42s86-30 118 16 68 36 102-10 50-30 72-18" stroke-opacity=".35" stroke-width="2"/>
+    <path d="M112 398c40-16 62 8 98-22s78-16 108 24 58 22 88-16 44-22 64-10" stroke-opacity=".55" stroke-width="2"/>
+  </g>
+  <g fill="#22d3ee">
+    <circle cx="112" cy="398" r="5"/>
+    <circle cx="210" cy="376" r="4" opacity=".8"/>
+    <circle cx="318" cy="400" r="5"/>
+    <circle cx="426" cy="384" r="4" opacity=".8"/>
+    <circle cx="514" cy="362" r="5"/>
+  </g>
+  <g fill="none" stroke="#22d3ee" stroke-opacity=".26">
+    <circle cx="300" cy="270" r="118"/>
+    <circle cx="300" cy="270" r="78"/>
+    <circle cx="300" cy="270" r="38"/>
+  </g>
+  <g fill="#0b0b10" stroke="#22d3ee" stroke-width="2">
+    <circle cx="300" cy="152" r="13"/>
+    <circle cx="402" cy="210" r="10"/>
+    <circle cx="402" cy="330" r="10"/>
+    <circle cx="300" cy="388" r="13"/>
+    <circle cx="198" cy="330" r="10"/>
+    <circle cx="198" cy="210" r="10"/>
+  </g>
+  <g fill="#22d3ee">
+    <circle cx="300" cy="152" r="4"/>
+    <circle cx="402" cy="210" r="3"/>
+    <circle cx="402" cy="330" r="3"/>
+    <circle cx="300" cy="388" r="4"/>
+    <circle cx="198" cy="330" r="3"/>
+    <circle cx="198" cy="210" r="3"/>
+  </g>
+  <text x="300" y="286" text-anchor="middle" fill="#ffffff" font-family="Arial Black, Arial, sans-serif" font-size="56" font-weight="900" letter-spacing="6">HPC</text>
+  <text x="300" y="528" text-anchor="middle" fill="#ffffff" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" letter-spacing="3">SIMULACIÓN</text>
+  <text x="300" y="556" text-anchor="middle" fill="#22d3ee" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="6">COLONIA DE HORMIGAS</text>
+</svg>

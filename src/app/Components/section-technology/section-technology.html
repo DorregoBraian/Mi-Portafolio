@@ -1,0 +1,61 @@
+<section class="tech-page" aria-labelledby="tech-title">
+  <header class="tech-header">
+    <p class="tech-eyebrow">Conocimientos técnicos</p>
+    <h2 id="tech-title" class="tech-title">Tecnologías<span>.</span></h2>
+    <p class="tech-lead">
+      Herramientas con las que construyo, integro y despliego soluciones.
+    </p>
+  </header>
+
+  <div class="tech-groups">
+    @for (group of groups; track group.title; let gi = $index) {
+      <section
+        class="tech-group"
+        [class]="'tech-group tech-group--' + group.variant"
+        [attr.aria-labelledby]="'tech-group-' + gi">
+
+        <header class="tech-group__head">
+          <span class="tech-group__num" aria-hidden="true">0{{ gi + 1 }}</span>
+          <h3 [id]="'tech-group-' + gi">{{ group.title }}</h3>
+          <span class="tech-group__rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="tech-group__body">
+          @for (item of group.items; track item.name; let ii = $index) {
+            <details class="tech-item" [open]="item.open ?? false" (toggle)="onToggle(item, $event)">
+              <summary class="tech-item__summary">
+                <span class="tech-item__icon" aria-hidden="true">
+                  @if (item.icon) {
+                    <i [class]="'bi bi-' + item.icon"></i>
+                  } @else {
+                    <span
+                      class="tech-icon__mono"
+                      [class.tech-icon__mono--small]="item.monoSmall">
+                      {{ item.mono }}
+                    </span>
+                  }
+                </span>
+
+                <span class="tech-item__name">{{ item.name }}</span>
+
+                <span class="tech-item__toggle" aria-hidden="true">
+                  <i class="bi bi-chevron-down"></i>
+                </span>
+              </summary>
+
+              <div class="tech-item__panel">
+                <p class="tech-item__desc">{{ item.description }}</p>
+
+                <ul class="tech-item__list">
+                  @for (bullet of item.bullets; track bullet) {
+                    <li>{{ bullet }}</li>
+                  }
+                </ul>
+              </div>
+            </details>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</section>

@@ -1,0 +1,238 @@
+<section class="about-page" aria-labelledby="about-title">
+  <header class="about-header">
+    <p class="about-eyebrow">Perfil profesional</p>
+    <h2 id="about-title" class="about-title">Sobre <span>mí</span></h2>
+    <p class="about-lead">
+      Desarrollador Full Stack con foco en .NET y Angular. Me gusta transformar
+      problemas complejos en soluciones claras, mantenibles y pensadas para durar.
+    </p>
+  </header>
+
+  <div class="about-intro">
+    <aside class="profile-card" aria-label="Datos de perfil">
+      <div class="profile-card__top">
+        <span class="profile-card__label">// Perfil</span>
+      </div>
+
+      <div class="profile-card__avatar" aria-hidden="true">
+        <span>BD</span>
+      </div>
+
+      <h3>Braian Nahuel Dorrego</h3>
+      <p class="profile-card__role">Desarrollador Full Stack</p>
+
+      <p class="profile-card__meta">
+        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+        Berazategui, Buenos Aires, Argentina
+      </p>
+      <p class="profile-card__meta">
+        <i class="bi bi-code-slash" aria-hidden="true"></i>
+        .NET + Angular + Git + SQL Server
+      </p>
+      <a class="profile-card__meta profile-card__meta--link" href="tel:+541173600290">
+        <i class="bi bi-telephone" aria-hidden="true"></i>
+        +54 11 7360-0290
+      </a>
+
+      <div class="profile-card__links">
+        <a
+          href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=rayan22dorrego@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Escribir a mi Gmail">
+          <i class="bi bi-envelope" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://github.com/DorregoBraian"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Perfil de GitHub">
+          <i class="bi bi-github" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/braian-nahuel-dorrego-b76381b2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Perfil de LinkedIn">
+          <i class="bi bi-linkedin" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <a class="cv-button" href="/cv-braian-dorrego.pdf" download>
+        <i class="bi bi-download" aria-hidden="true"></i>
+        Descargar CV
+      </a>
+    </aside>
+
+    <div class="about-bio">
+      <p class="about-bio__kicker">Quién soy</p>
+      <h3>Construyo soluciones completas, del dato a la interfaz.</h3>
+
+      <p>
+        Soy Braian, desarrollador Full Stack de Berazategui. Hace aproximadamente
+        cinco años vengo construyendo mi camino entre la facultad, proyectos
+        personales y el trabajo profesional. Mi experiencia más reciente fue en una
+        consultora IT, donde desarrollé soluciones para el sector logístico con .NET
+        y Angular.
+      </p>
+      <p>
+        Me interesa tanto el backend como la experiencia de usuario: disfruto
+        diseñar APIs claras, modelar datos, cuidar la arquitectura y lograr que la
+        interfaz se sienta simple. Trabajo con arquitecturas limpias y hexagonales,
+        pruebas unitarias y metodologías ágiles; aprendo rápido y me gusta entender
+        el porqué de cada decisión técnica.
+      </p>
+
+      <div class="about-stats">
+        @for (stat of stats; track stat.label) {
+          <div class="stat">
+            <strong>{{ stat.value }}</strong>
+            <span>{{ stat.label }}</span>
+            <small>{{ stat.detail }}</small>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <section class="about-section" aria-labelledby="about-pillars">
+    <header class="section-head">
+      <span class="section-head__num" aria-hidden="true">01</span>
+      <h3 id="about-pillars">Lo que hago</h3>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="pillars">
+      @for (pillar of pillars; track pillar.title) {
+        <article [class]="'pillar pillar--' + pillar.accent">
+          <div class="pillar__icon" aria-hidden="true">
+            <i [class]="'bi bi-' + pillar.icon"></i>
+          </div>
+          <h4>{{ pillar.title }}</h4>
+          <p>{{ pillar.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="about-section" aria-labelledby="about-timeline">
+    <header class="section-head">
+      <span class="section-head__num" aria-hidden="true">02</span>
+      <h3 id="about-timeline">Trayectoria</h3>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="timeline">
+      @for (item of timeline; track item.title) {
+        <article [class]="'timeline-item timeline-item--' + item.accent">
+          <p class="timeline-item__period">{{ item.period }}</p>
+          <span class="timeline-item__marker" aria-hidden="true"></span>
+
+          <div class="timeline-item__card">
+            <div class="timeline-item__top">
+              <h4>{{ item.title }}</h4>
+              @if (item.current) {
+                <span class="timeline-item__badge">Actualidad</span>
+              }
+            </div>
+            <p class="timeline-item__place">{{ item.place }}</p>
+            <p class="timeline-item__desc">{{ item.description }}</p>
+
+            <ul>
+              @for (bullet of item.bullets; track bullet) {
+                <li>{{ bullet }}</li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <div class="about-split">
+    <section class="about-section" aria-labelledby="about-education">
+      <header class="section-head">
+        <span class="section-head__num" aria-hidden="true">03</span>
+        <h3 id="about-education">Formación</h3>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="education">
+        @for (item of education; track item.title) {
+          <article class="education-item">
+            <div class="education-item__icon" aria-hidden="true">
+              <i [class]="'bi bi-' + item.icon"></i>
+            </div>
+            <div>
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.place }}</p>
+              <span>{{ item.period }}</span>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="about-soft">
+      <header class="section-head">
+        <span class="section-head__num" aria-hidden="true">04</span>
+        <h3 id="about-soft">Cómo trabajo</h3>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="soft-panel">
+        <p class="soft-panel__intro">
+          Me adapto a equipos ágiles, disfruto compartir lo que aprendo y cuido la
+          claridad tanto en el código como en la comunicación.
+        </p>
+
+        <ul class="soft-chips">
+          @for (strength of strengths; track strength) {
+            <li>{{ strength }}</li>
+          }
+        </ul>
+
+        <div class="languages">
+          <div>
+            <span>Español</span>
+            <strong>Nativo</strong>
+          </div>
+          <div>
+            <span>Inglés</span>
+            <strong>A1 · en formación</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="about-cta" aria-labelledby="about-cta-title">
+    <div class="about-cta__copy">
+      <p class="about-cta__eyebrow">// Siguiente paso</p>
+      <h3 id="about-cta-title">¿Tenés un proyecto en mente?</h3>
+      <p>
+        Estoy abierto a oportunidades para seguir creciendo y aportar en equipos
+        que disfruten construir cosas bien hechas. Escribime y conversamos.
+      </p>
+    </div>
+
+    <div class="about-cta__actions">
+      <a
+        class="cta-primary"
+        href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=rayan22dorrego@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer">
+        Hablemos
+        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+      </a>
+      <a
+        class="cta-secondary"
+        href="https://www.linkedin.com/in/braian-nahuel-dorrego-b76381b2/"
+        target="_blank"
+        rel="noopener noreferrer">
+        LinkedIn
+        <i class="bi bi-linkedin" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+</section>

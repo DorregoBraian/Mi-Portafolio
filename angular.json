@@ -24,9 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -38,11 +36,12 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "16kB",
+                  "maximumError": "18kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/Mi-Portafolio/"
             },
             "development": {
               "optimization": false,
@@ -54,6 +53,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "port": 4300
+          },
           "configurations": {
             "production": {
               "buildTarget": "portafolio-angular:build:production"
